@@ -24,3 +24,4 @@ class Usuario extends Model {
     ];
 }
  
+//brrrrr
