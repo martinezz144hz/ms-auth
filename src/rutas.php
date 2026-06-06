@@ -26,3 +26,6 @@ $app->get('/validate', function (Request $request, Response $response) use ($aut
     return $authControlador->validar($request, $response);
 });
  
+
+
+//brrrrrr
