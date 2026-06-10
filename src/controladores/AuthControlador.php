@@ -7,9 +7,8 @@ require __DIR__ . '/../modelos/Usuario.php';
  
 class AuthControlador {
  
-    // ============================================
-    // LOGIN
-    // ============================================
+    // iniciar secion
+    
     public function login(Request $request, Response $response): Response {
         $datos = $request->getParsedBody();
  
@@ -23,7 +22,7 @@ class AuthControlador {
             ], 400);
         }
  
-        // Buscar usuario en la BD
+        // Buscar usuario en la base
         $user = Usuario::where('usuario', $usuario)
                        ->orWhere('email', $usuario)
                        ->first();
@@ -37,7 +36,7 @@ class AuthControlador {
         // Generar token simple
         $token = bin2hex(random_bytes(32));
  
-        // Guardar token en la BD
+        // Guardar token en la base
         $user->token      = $token;
         $user->token_exp  = date('Y-m-d H:i:s', strtotime('+8 hours'));
         $user->save();
@@ -49,9 +48,7 @@ class AuthControlador {
         ], 200);
     }
  
-    // ============================================
-    // LOGOUT
-    // ============================================
+    // cerrar secion
     public function logout(Request $request, Response $response): Response {
         $token = $request->getHeaderLine('Authorization');
  
@@ -74,9 +71,8 @@ class AuthControlador {
         ], 200);
     }
  
-    // ============================================
-    // VALIDAR TOKEN
-    // ============================================
+   // validar token
+
     public function validar(Request $request, Response $response): Response {
         $token = $request->getHeaderLine('Authorization');
  
@@ -111,9 +107,8 @@ class AuthControlador {
         ], 200);
     }
  
-    // ============================================
-    // HELPER — respuesta JSON
-    // ============================================
+    // respuesata de json
+
     private function respuesta(Response $response, array $datos, int $codigo): Response {
         $response->getBody()->write(json_encode($datos));
         return $response
@@ -123,4 +118,4 @@ class AuthControlador {
 }
  
 
-//brrrrrrr
+

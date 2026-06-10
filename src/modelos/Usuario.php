@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
  
 class Usuario extends Model {
  
-    // Nombre de la tabla en la BD
+    // Nombre de la tabla en la base
     protected $table = 'usuarios';
  
     // Campos que se pueden llenar masivamente
@@ -16,7 +16,7 @@ class Usuario extends Model {
         'token_exp',
     ];
  
-    // Ocultar password y token en respuestas JSON
+    // Ocultar password y token 
     protected $hidden = [
         'password',
         'token',
@@ -24,4 +24,3 @@ class Usuario extends Model {
     ];
 }
  
-//brrrrr
